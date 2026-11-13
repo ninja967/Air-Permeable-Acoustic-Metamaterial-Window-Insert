@@ -1,0 +1,10 @@
+"W_cell" = 60.00mm
+"H_cell" = 30.00mm
+"D_cell" = 60.00mm
+"W_airway" = 20.00mm
+"t_wall" = 1.60mm
+"N_passes" = 4
+"W_chamber" = ( "W_cell" - "W_airway" ) / 2
+"w_slit" = ( "W_chamber" - ( "N_passes" + 1 ) * "t_wall" ) / "N_passes"
+"L_baffle" = "H_cell" - ( 2 * "t_wall" ) - "w_slit"
+"L_waveguide" = 100.00mm

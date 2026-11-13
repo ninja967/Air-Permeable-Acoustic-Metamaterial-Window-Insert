@@ -1,0 +1,31 @@
+# SolidWorks temp / lock files
+~$*
+*.bak
+*.tmp
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Unrelated legacy toll plaza files
+Automatic_Toll_Plaza*
+build_4slide_ppt.py
+build_clean_ppt.py
+build_ppt.py
+create_cad_redesign.py
+build_full_redesign.py
+build_perfect_robot.py
+generate_simulation_video.py
+toll_plaza_hero.jpg
+Toll_Plaza_Interactive_Simulation.html
+crop_renders.py
+generate_renders.py
+generate_metamaterial.py
+*_cropped.png
+test_*.png
+*.log
+
+# Windows / Editor
+Thumbs.db
+.DS_Store
+.vscode/
