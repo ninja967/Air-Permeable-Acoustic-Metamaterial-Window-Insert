@@ -2,29 +2,26 @@ import os
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
+from pptx.enum.text import PP_ALIGN
 from pptx.enum.shapes import MSO_SHAPE
 
-# 1. Initialize presentation (16:9 Widescreen)
 prs = Presentation()
 prs.slide_width = Inches(13.333)
 prs.slide_height = Inches(7.5)
 
-# Color Palette: Modern Engineering / Architectural Acoustics
-BG_COLOR = RGBColor(248, 250, 252)       # Light Slate #F8FAFC
-PRIMARY_COLOR = RGBColor(15, 23, 42)     # Deep Navy #0F172A
-SECONDARY_COLOR = RGBColor(30, 41, 59)   # Slate Navy #1E293B
-ACCENT_BLUE = RGBColor(2, 132, 199)      # Sky Blue #0284C7
-ACCENT_TEAL = RGBColor(13, 148, 136)     # Teal #0D9488
-CARD_BG = RGBColor(255, 255, 255)        # Pure White
-CARD_BORDER = RGBColor(226, 232, 240)    # Light Border #E2E8F0
-TEXT_MAIN = RGBColor(30, 41, 59)         # Dark Slate
-TEXT_MUTED = RGBColor(100, 116, 139)     # Medium Slate #64748B
+BG_COLOR = RGBColor(248, 250, 252)
+PRIMARY_COLOR = RGBColor(15, 23, 42)
+SECONDARY_COLOR = RGBColor(30, 41, 59)
+ACCENT_BLUE = RGBColor(2, 132, 199)
+ACCENT_TEAL = RGBColor(13, 148, 136)
+CARD_BG = RGBColor(255, 255, 255)
+CARD_BORDER = RGBColor(226, 232, 240)
+TEXT_MAIN = RGBColor(30, 41, 59)
+TEXT_MUTED = RGBColor(100, 116, 139)
 
 FOLDER = r"c:\Users\sarat\Downloads\New folder"
 
 def add_header(slide, title_text, category_text="AIR-PERMEABLE ACOUSTIC METAMATERIAL WINDOW INSERT"):
-    # Category pill
     cat_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.4), Inches(11.7), Inches(0.4))
     tf_c = cat_box.text_frame
     tf_c.word_wrap = True
@@ -34,7 +31,6 @@ def add_header(slide, title_text, category_text="AIR-PERMEABLE ACOUSTIC METAMATE
     p_c.font.bold = True
     p_c.font.color.rgb = ACCENT_BLUE
 
-    # Title
     title_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.7), Inches(11.7), Inches(0.8))
     tf_t = title_box.text_frame
     tf_t.word_wrap = True
@@ -44,7 +40,6 @@ def add_header(slide, title_text, category_text="AIR-PERMEABLE ACOUSTIC METAMATE
     p_t.font.bold = True
     p_t.font.color.rgb = PRIMARY_COLOR
 
-    # Subtle divider line
     line = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.5), Inches(11.733), Inches(0.02))
     line.fill.solid()
     line.fill.fore_color.rgb = CARD_BORDER
@@ -61,12 +56,9 @@ def create_card(slide, left, top, width, height, bg=CARD_BG, border=CARD_BORDER)
 # ==========================================================
 # SLIDE 1: TITLE SLIDE
 # ==========================================================
-s1 = prs.slides.add_slide(prs.slide_layouts[6]) # blank layout
-
-# Main background card
+s1 = prs.slides.add_slide(prs.slide_layouts[6])
 card1 = create_card(s1, Inches(0.8), Inches(0.8), Inches(11.733), Inches(5.9), bg=CARD_BG, border=ACCENT_BLUE)
 
-# Course Tag
 tag_box = s1.shapes.add_textbox(Inches(1.4), Inches(1.2), Inches(10.5), Inches(0.4))
 tf_tag = tag_box.text_frame
 p_tag = tf_tag.paragraphs[0]
@@ -75,7 +67,6 @@ p_tag.font.size = Pt(12)
 p_tag.font.bold = True
 p_tag.font.color.rgb = ACCENT_BLUE
 
-# Title
 title_box1 = s1.shapes.add_textbox(Inches(1.4), Inches(1.6), Inches(10.5), Inches(1.6))
 tf_t1 = title_box1.text_frame
 tf_t1.word_wrap = True
@@ -85,7 +76,6 @@ p1.font.size = Pt(36)
 p1.font.bold = True
 p1.font.color.rgb = PRIMARY_COLOR
 
-# Subtitle
 sub_box1 = s1.shapes.add_textbox(Inches(1.4), Inches(3.3), Inches(10.5), Inches(0.8))
 tf_s1 = sub_box1.text_frame
 tf_s1.word_wrap = True
@@ -94,7 +84,6 @@ p_sub.text = "Continuous Natural Ventilation Coupled with Broadband Destructive 
 p_sub.font.size = Pt(16)
 p_sub.font.color.rgb = ACCENT_TEAL
 
-# Presenters box
 pres_card = create_card(s1, Inches(1.4), Inches(4.3), Inches(5.2), Inches(1.8), bg=RGBColor(241, 245, 249), border=CARD_BORDER)
 pres_box = s1.shapes.add_textbox(Inches(1.6), Inches(4.45), Inches(4.8), Inches(1.5))
 tf_p = pres_box.text_frame
@@ -116,7 +105,6 @@ p_p3.font.size = Pt(13)
 p_p3.font.bold = True
 p_p3.font.color.rgb = PRIMARY_COLOR
 
-# Instructor box
 inst_card = create_card(s1, Inches(6.9), Inches(4.3), Inches(5.0), Inches(1.8), bg=RGBColor(241, 245, 249), border=CARD_BORDER)
 inst_box = s1.shapes.add_textbox(Inches(7.1), Inches(4.45), Inches(4.6), Inches(1.5))
 tf_i = inst_box.text_frame
@@ -138,12 +126,11 @@ p_i3.font.size = Pt(12)
 p_i3.font.color.rgb = TEXT_MUTED
 
 # ==========================================================
-# SLIDE 2: THE URBAN DILEMMA: NOISE VS. VENTILATION
+# SLIDE 2: THE URBAN DILEMMA
 # ==========================================================
 s2 = prs.slides.add_slide(prs.slide_layouts[6])
 add_header(s2, "The Urban Dilemma: Traffic Noise vs. Fresh Air")
 
-# Card 1: The Problem
 create_card(s2, Inches(0.8), Inches(1.8), Inches(5.6), Inches(5.0))
 tb1 = s2.shapes.add_textbox(Inches(1.1), Inches(2.0), Inches(5.0), Inches(4.6))
 tf1 = tb1.text_frame
@@ -166,7 +153,6 @@ for b in bullets_problem:
     p.font.color.rgb = TEXT_MAIN
     p.space_before = Pt(14)
 
-# Card 2: The Metamaterial Solution
 create_card(s2, Inches(6.9), Inches(1.8), Inches(5.6), Inches(5.0), bg=RGBColor(240, 249, 255), border=ACCENT_BLUE)
 tb2 = s2.shapes.add_textbox(Inches(7.2), Inches(2.0), Inches(5.0), Inches(4.6))
 tf2 = tb2.text_frame
@@ -191,12 +177,11 @@ for b in bullets_sol:
     p.space_before = Pt(12)
 
 # ==========================================================
-# SLIDE 3: WORKING PRINCIPLE: GEOMETRY AS THE MACHINE
+# SLIDE 3: WORKING PRINCIPLE
 # ==========================================================
 s3 = prs.slides.add_slide(prs.slide_layouts[6])
 add_header(s3, "How the Product Works: Geometry as the Machine")
 
-# Text on left
 create_card(s3, Inches(0.8), Inches(1.8), Inches(5.2), Inches(5.0))
 tb3 = s3.shapes.add_textbox(Inches(1.0), Inches(2.0), Inches(4.8), Inches(4.6))
 tf3 = tb3.text_frame
@@ -220,7 +205,6 @@ for b in bullets_work:
     p.font.color.rgb = TEXT_MAIN
     p.space_before = Pt(12)
 
-# Concept diagram on right
 concept_img = os.path.join(FOLDER, "concept_how_it_works.png")
 if os.path.exists(concept_img):
     create_card(s3, Inches(6.3), Inches(1.8), Inches(6.2), Inches(5.0))
@@ -232,7 +216,6 @@ if os.path.exists(concept_img):
 s4 = prs.slides.add_slide(prs.slide_layouts[6])
 add_header(s4, "The Science Behind It: Destructive Wave Interference")
 
-# 3 Concept cards
 cards_data = [
     ("1. Sound as a Traveling Wave", 
      ["Sound energy travels through air as oscillating compression waves (crests and troughs).",
@@ -274,7 +257,6 @@ for title, points, left_pos in cards_data:
 s5 = prs.slides.add_slide(prs.slide_layouts[6])
 add_header(s5, "Component 1: Central Ventilation Airway Duct")
 
-# Text Left
 create_card(s5, Inches(0.8), Inches(1.8), Inches(5.6), Inches(5.0))
 tb5 = s5.shapes.add_textbox(Inches(1.1), Inches(2.1), Inches(5.0), Inches(4.4))
 tf5 = tb5.text_frame
@@ -286,7 +268,7 @@ p.font.bold = True
 p.font.color.rgb = PRIMARY_COLOR
 
 bullets_core = [
-    "Unobstructed 20 mm Central Duct: Provides an open cross-sectional airflow corridor straight through the center of the unit cell.",
+    "Unobstructed 20.00 mm Central Duct: Provides an open cross-sectional airflow corridor straight through the center of the unit cell.",
     "33.3% Open Ventilation Area: Ensures natural indoor room breathing, heat removal, and passive cross-ventilation without draft constriction.",
     "Zero Bulk Airflow Resistance: Because natural breeze moves as bulk fluid drift, it glides straight through without entering the labyrinth traps.",
     "Acoustic Mixing Zone: Serves as the recombining chamber where direct sound waves collide with out-of-phase labyrinth waves."
@@ -298,7 +280,6 @@ for b in bullets_core:
     p.font.color.rgb = TEXT_MAIN
     p.space_before = Pt(12)
 
-# Image Right
 img_front = os.path.join(FOLDER, "render_unit_cell_front.png")
 if os.path.exists(img_front):
     create_card(s5, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.0))
@@ -310,7 +291,6 @@ if os.path.exists(img_front):
 s6 = prs.slides.add_slide(prs.slide_layouts[6])
 add_header(s6, "Component 2: Space-Coiling Labyrinth Baffles")
 
-# Text Left
 create_card(s6, Inches(0.8), Inches(1.8), Inches(5.6), Inches(5.0))
 tb6 = s6.shapes.add_textbox(Inches(1.1), Inches(2.1), Inches(5.0), Inches(4.4))
 tf6 = tb6.text_frame
@@ -322,10 +302,10 @@ p.font.bold = True
 p.font.color.rgb = PRIMARY_COLOR
 
 bullets_baffle = [
-    "3 Staggered Partitions Per Chamber: Thin 1.6 mm rigid baffles divide the 20 mm wide side chamber into 4 serpentine vertical passes.",
-    "Path Extension in Compact Depth: Compresses a long ~107 mm acoustic journey into an ultra-thin 30 mm window insert profile.",
-    "Corrected Serpentine Topology: Alternating floor and ceiling baffle attachments eliminate short-circuiting and guarantee full 4-pass sound travel.",
-    "Additive Manufacturing Sizing: The 1.6 mm wall thickness equals exactly 4 nozzle passes of a 0.4 mm 3D printer for high stiffness and low weight."
+    "3 Staggered Partitions Per Chamber: Thin 1.50 mm rigid baffles divide each 20 mm wide side chamber into 4 serpentine vertical passes.",
+    "Path Extension in Compact Depth: Compresses an extended ~107 mm acoustic journey into an ultra-thin 30 mm window cassette profile.",
+    "Alternating Baffle Topology: Alternating floor and ceiling attachments eliminate short-circuiting and guarantee full 4-pass sound travel.",
+    "Open 3D Visualization: Rendered with an open cutaway top so internal serpentine baffle channels are clearly visible in isometric view."
 ]
 for b in bullets_baffle:
     p = tf6.add_paragraph()
@@ -334,7 +314,6 @@ for b in bullets_baffle:
     p.font.color.rgb = TEXT_MAIN
     p.space_before = Pt(12)
 
-# Image Right
 img_iso = os.path.join(FOLDER, "render_unit_cell_iso.png")
 if os.path.exists(img_iso):
     create_card(s6, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.0))
@@ -346,7 +325,6 @@ if os.path.exists(img_iso):
 s7 = prs.slides.add_slide(prs.slide_layouts[6])
 add_header(s7, "Component 3: Acoustic Entry Slits & Resonator Chamber")
 
-# Text Left
 create_card(s7, Inches(0.8), Inches(1.8), Inches(5.6), Inches(5.0))
 tb7 = s7.shapes.add_textbox(Inches(1.1), Inches(2.1), Inches(5.0), Inches(4.4))
 tf7 = tb7.text_frame
@@ -358,9 +336,9 @@ p.font.bold = True
 p.font.color.rgb = PRIMARY_COLOR
 
 bullets_slit = [
-    "Calibrated 3.0 mm Entrance Portals: Located near the inlet on the inner airway wall to cleanly capture incoming sound oscillations.",
-    "Selective Acoustic Coupling: Acts as an acoustic filter that diverts fluctuating sound pressure while allowing smooth bulk airflow to bypass.",
-    "Dual Symmetric Chambers: Both left and right chambers work in parallel, capturing sound from both sides of the central ventilation stream.",
+    "Calibrated 2.00 mm Entrance Portals: Located near the bottom on the 1.50 mm inner airway wall to cleanly capture incoming sound oscillations.",
+    "Selective Acoustic Coupling: Diverts fluctuating acoustic pressure waves into the side labyrinths while allowing smooth bulk airflow to bypass.",
+    "Dual Symmetric Chambers: Both left and right chambers operate in parallel, canceling sound from both sides of the central ventilation stream.",
     "Dead-End Reflection Boundary: The 4th channel terminates against a solid end-wall, reflecting the inverted acoustic wave back into the airway."
 ]
 for b in bullets_slit:
@@ -370,34 +348,32 @@ for b in bullets_slit:
     p.font.color.rgb = TEXT_MAIN
     p.space_before = Pt(12)
 
-# Image Right
 img_air_front = os.path.join(FOLDER, "render_air_domain_front.png")
 if os.path.exists(img_air_front):
     create_card(s7, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.0))
-    s7.shapes.add_picture(img_air_front, Inches(7.0), Inches(2.0), Inches(5.3), Inches(4.6))
+    s6.shapes.add_picture(img_air_front, Inches(7.0), Inches(2.0), Inches(5.3), Inches(4.6))
 
 # ==========================================================
-# SLIDE 8: COMPONENT 4: SEALED Z-AXIS END CAPS
+# SLIDE 8: COMPONENT 4: UNIT CELL STRUCTURAL FRAME
 # ==========================================================
 s8 = prs.slides.add_slide(prs.slide_layouts[6])
-add_header(s8, "Component 4: Sealed Z-Axis Top & Bottom End Caps")
+add_header(s8, "Component 4: Unit Cell 60x30x30 mm Blueprint Frame")
 
-# Text Left
 create_card(s8, Inches(0.8), Inches(1.8), Inches(5.6), Inches(5.0))
 tb8 = s8.shapes.add_textbox(Inches(1.1), Inches(2.1), Inches(5.0), Inches(4.4))
 tf8 = tb8.text_frame
 tf8.word_wrap = True
 p = tf8.paragraphs[0]
-p.text = "Vertical Boundary Acoustic Containment"
+p.text = "Exact Dimensional Stack-Up"
 p.font.size = Pt(18)
 p.font.bold = True
 p.font.color.rgb = PRIMARY_COLOR
 
 bullets_cap = [
-    "1.6 mm Planar Seal Plates: Rigid top and bottom solid covers seal the Z-extremities of the side labyrinth cavities at 60 mm total height.",
-    "Zero Vertical Acoustic Leakage: Ensures acoustic waves cannot escape into adjacent vertical cells or leak around the perimeter.",
-    "Strict 1D Wave Routing: Confines acoustic propagation purely to the horizontal folded labyrinth without out-of-plane dissipation.",
-    "Open Central Duct Corridor: The central 20 mm airway remains completely unobstructed on both ends for continuous vertical modular stacking."
+    "60.00 mm Width x 30.00 mm Height: Perfectly proportioned 2:1 aspect ratio centered on the coordinate Origin (0,0).",
+    "1.50 mm Uniform Wall Standard: Outer frame walls, central airway walls, and internal baffles share identical 1.50 mm wall thickness.",
+    "1.50 mm Rigid Base Floor: Closes the back of both side resonators while maintaining a clean, open central ventilation passage.",
+    "Additive Manufacturing DFAM: Self-supporting vertical walls designed for direct 3D printing in ABS or PETG polymer without infill voids."
 ]
 for b in bullets_cap:
     p = tf8.add_paragraph()
@@ -406,11 +382,9 @@ for b in bullets_cap:
     p.font.color.rgb = TEXT_MAIN
     p.space_before = Pt(12)
 
-# Image Right
-img_top = os.path.join(FOLDER, "render_unit_cell_top.png")
-if os.path.exists(img_top):
+if os.path.exists(img_front):
     create_card(s8, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.0))
-    s8.shapes.add_picture(img_top, Inches(7.0), Inches(2.0), Inches(5.3), Inches(4.6))
+    s8.shapes.add_picture(img_front, Inches(7.0), Inches(2.0), Inches(5.3), Inches(4.6))
 
 # ==========================================================
 # SLIDE 9: COMPONENT 5: 3x3 MODULAR WINDOW PANEL MATRIX
@@ -418,7 +392,6 @@ if os.path.exists(img_top):
 s9 = prs.slides.add_slide(prs.slide_layouts[6])
 add_header(s9, "Component 5: 3x3 Modular Window Panel Matrix")
 
-# Text Left
 create_card(s9, Inches(0.8), Inches(1.8), Inches(5.6), Inches(5.0))
 tb9 = s9.shapes.add_textbox(Inches(1.1), Inches(2.1), Inches(5.0), Inches(4.4))
 tf9 = tb9.text_frame
@@ -442,7 +415,6 @@ for b in bullets_panel:
     p.font.color.rgb = TEXT_MAIN
     p.space_before = Pt(12)
 
-# Image Right
 img_p3x3 = os.path.join(FOLDER, "render_panel_3x3_iso.png")
 if os.path.exists(img_p3x3):
     create_card(s9, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.0))
@@ -454,7 +426,6 @@ if os.path.exists(img_p3x3):
 s10 = prs.slides.add_slide(prs.slide_layouts[6])
 add_header(s10, "Component 6: Window-Track Flange & Gasket Interface")
 
-# Text Left
 create_card(s10, Inches(0.8), Inches(1.8), Inches(5.6), Inches(5.0))
 tb10 = s10.shapes.add_textbox(Inches(1.1), Inches(2.1), Inches(5.0), Inches(4.4))
 tf10 = tb10.text_frame
@@ -466,7 +437,7 @@ p.font.bold = True
 p.font.color.rgb = PRIMARY_COLOR
 
 bullets_flange = [
-    "5.0 mm Perimeter Mounting Lip: Extends continuously around the panel mid-plane (Y = -5 to +5 mm) to slot directly into standard sliding window frames.",
+    "5.0 mm Perimeter Mounting Lip: Extends continuously around the panel mid-plane to slot directly into standard sliding window frames.",
     "1.5 mm Lead-in Chamfers: Beveled insertion edges guide the cassette smoothly into standard rubber window gaskets without pinching or tearing.",
     "Acoustic Perimeter Seal: Compresses against window frame weatherstripping to eliminate flanking sound leakage around the panel edges.",
     "Modular Scalability: Multiple 180x180 mm panels can be snap-interlocked horizontally and vertically to fill any window opening size."
@@ -478,7 +449,6 @@ for b in bullets_flange:
     p.font.color.rgb = TEXT_MAIN
     p.space_before = Pt(12)
 
-# Image Right
 img_p3x3_front = os.path.join(FOLDER, "render_panel_3x3_front.png")
 if os.path.exists(img_p3x3_front):
     create_card(s10, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.0))
@@ -490,7 +460,6 @@ if os.path.exists(img_p3x3_front):
 s11 = prs.slides.add_slide(prs.slide_layouts[6])
 add_header(s11, "Acoustic Air Domain: Visualizing Sound & Air Paths")
 
-# Text Left
 create_card(s11, Inches(0.8), Inches(1.8), Inches(5.6), Inches(5.0))
 tb11 = s11.shapes.add_textbox(Inches(1.1), Inches(2.1), Inches(5.0), Inches(4.4))
 tf11 = tb11.text_frame
@@ -514,7 +483,6 @@ for b in bullets_air:
     p.font.color.rgb = TEXT_MAIN
     p.space_before = Pt(12)
 
-# Image Right
 img_air_iso = os.path.join(FOLDER, "render_air_domain_iso.png")
 if os.path.exists(img_air_iso):
     create_card(s11, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.0))
@@ -526,7 +494,6 @@ if os.path.exists(img_air_iso):
 s12 = prs.slides.add_slide(prs.slide_layouts[6])
 add_header(s12, "Summary & Key Engineering Takeaways")
 
-# 4 Summary cards
 summaries = [
     ("Urban Dilemma Solved", 
      "Successfully broke the historical trade-off between natural breeze and acoustic silence in urban architecture.",
@@ -535,7 +502,7 @@ summaries = [
      "Replaced heavy double-glazing and active electronic speakers with a purely passive, 3D-printable polymer metamaterial.",
      Inches(6.8), Inches(1.8)),
     ("Destructive Phase Cancellation", 
-     "Path difference delays sound waves by 180°, canceling noise crest-to-trough while maintaining a 33% open ventilation core.",
+     "Path difference delays sound waves by 180°, canceling noise crest-to-trough while maintaining a 33.3% open ventilation core.",
      Inches(0.8), Inches(4.4)),
     ("Modular Architectural Retrofit", 
      "Engineered 180x180 mm 3x3 cassette with integrated mounting flange and chamfers for instant, toolless window installation.",
@@ -559,8 +526,6 @@ for title, desc, l, t in summaries:
     p2.font.color.rgb = TEXT_MAIN
     p2.space_before = Pt(10)
 
-# Save presentation
 out_pptx = os.path.join(FOLDER, "Acoustic_Metamaterial_Presentation.pptx")
 prs.save(out_pptx)
-print(f"Presentation successfully generated and saved to: {out_pptx}")
-print(f"Total slides: {len(prs.slides)}")
+print(f"Presentation successfully updated and saved to: {out_pptx}")

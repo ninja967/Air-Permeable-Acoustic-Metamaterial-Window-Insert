@@ -78,13 +78,13 @@ Sound waves are microscopic oscillating pressure fluctuations, whereas ventilati
 
 | Component Render | Component Name | Functional Role & Architecture |
 | :---: | :--- | :--- |
-| <img src="render_unit_cell_front.png" width="220"/> | **1. Central Airway Channel** | • **Dimensions**: $20.0\text{ mm}$ wide $\times 30.0\text{ mm}$ deep $\times 60.0\text{ mm}$ high.<br>• **Function**: Unobstructed central ventilation duct providing a 33.3% open ratio for natural room breathing with zero bulk resistance.<br>• **Acoustic Role**: Acts as the primary conduit and recombination mixing zone where delayed waves cancel direct waves. |
-| <img src="render_unit_cell_iso.png" width="220"/> | **2. Serpentine Labyrinth Baffles** | • **Dimensions**: 3 staggered vertical partitions, $1.6\text{ mm}$ wall thickness, $23.8\text{ mm}$ length.<br>• **Function**: Compresses an extended $\approx 107\text{ mm}$ acoustic travel path into a compact $20\text{ mm}$ wide side envelope.<br>• **Acoustic Role**: Alternating floor-to-ceiling attachments prevent wave short-circuiting and guide sound through 4 full folded passes. |
-| <img src="render_air_domain_front.png" width="220"/> | **3. Acoustic Entry Slits** | • **Dimensions**: $3.0\text{ mm} \times 3.0\text{ mm}$ calibrated entry portals.<br>• **Function**: Positioned on the inner airway wall to cleanly capture oscillating acoustic pressure while allowing bulk airflow to bypass.<br>• **Acoustic Role**: Acoustic impedance portal linking the central airway to the dead-end resonant cavities. |
-| <img src="render_unit_cell_top.png" width="220"/> | **4. Sealed Z-Axis End Caps** | • **Dimensions**: $1.6\text{ mm}$ solid planar plates on top and bottom faces ($Z = \pm 28.4\text{ to } \pm 30.0\text{ mm}$).<br>• **Function**: Completely encloses the side labyrinth chambers at $60\text{ mm}$ total unit cell height.<br>• **Acoustic Role**: Eliminates out-of-plane vertical acoustic leakage between vertically stacked modular tiles. |
-| <img src="render_panel_3x3_iso.png" width="220"/> | **5. 3x3 Modular Panel Matrix** | • **Dimensions**: $180.0\text{ mm} \times 180.0\text{ mm} \times 30.0\text{ mm}$ monolithic lattice.<br>• **Function**: Full architectural window cassette combining 9 unit cells into 3 parallel ventilation corridors.<br>• **Acoustic Role**: Multiplies acoustic cancellation zones (18 side resonators) across the full window aperture. |
+| <img src="render_unit_cell_front.png" width="220"/> | **1. Central Airway Channel** | • **Dimensions**: $20.0\text{ mm}$ wide $\times 30.0\text{ mm}$ high $\times 30.0\text{ mm}$ deep.<br>• **Function**: Unobstructed central ventilation duct providing a 33.3% open cross-section for natural room breathing with zero bulk airflow resistance.<br>• **Acoustic Role**: Acts as the primary conduit and recombination mixing zone where delayed waves cancel direct waves. |
+| <img src="render_unit_cell_iso.png" width="220"/> | **2. Serpentine Labyrinth Baffles** | • **Dimensions**: 3 staggered vertical partitions, $1.50\text{ mm}$ wall thickness, $23.0\text{ mm}$ height.<br>• **Function**: Compresses an extended $\approx 107\text{ mm}$ acoustic travel path into a compact $20\text{ mm}$ wide side envelope.<br>• **Acoustic Role**: Alternating floor-to-ceiling attachments prevent wave short-circuiting and guide sound through 4 full folded passes. |
+| <img src="render_air_domain_front.png" width="220"/> | **3. Acoustic Entry Slits** | • **Dimensions**: $2.00\text{ mm}$ calibrated entry doorways positioned at the bottom of the inner airway walls.<br>• **Function**: Captures oscillating acoustic pressure waves while allowing bulk ventilation airflow to bypass through the open duct.<br>• **Acoustic Role**: Acoustic impedance portal linking the central airway to the dead-end resonant labyrinth chambers. |
+| <img src="render_unit_cell_iso.png" width="220"/> | **4. Labyrinth Cavity & Back Plate** | • **Dimensions**: $1.50\text{ mm}$ solid back plate ($Z = -30.0\text{ mm}$) with $28.5\text{ mm}$ deep open-top acoustic chambers.<br>• **Function**: Matches the exact 3D cutaway cassette view from the design blueprint, cleanly exposing the internal baffles.<br>• **Acoustic Role**: Seals the rear acoustic cavity while providing rigid acoustic impedance boundaries ($Z_{\text{wall}} \gg Z_{\text{air}}$). |
+| <img src="render_panel_3x3_iso.png" width="220"/> | **5. 3x3 Modular Panel Matrix** | • **Dimensions**: $180.0\text{ mm} \times 180.0\text{ mm} \times 30.0\text{ mm}$ monolithic lattice.<br>• **Function**: Full architectural window cassette combining 9 unit cells into 3 parallel continuous ventilation corridors.<br>• **Acoustic Role**: Multiplies acoustic cancellation zones (18 side resonators) across the full window aperture. |
 | <img src="render_panel_3x3_front.png" width="220"/> | **6. Window-Track Flange & Gasket** | • **Dimensions**: $5.0\text{ mm}$ wide perimeter lip ($190 \times 190\text{ mm}$ outer) with $1.5\text{ mm} \times 45^\circ$ lead-in chamfers.<br>• **Function**: Toolless retrofitting into existing sliding window frames.<br>• **Acoustic Role**: Compresses firmly against architectural rubber weatherstripping to prevent flanking edge noise. |
-| <img src="render_air_domain_iso.png" width="220"/> | **7. Inverse Acoustic Air Domain** | • **Dimensions**: $60.0\text{ mm} \times 230.0\text{ mm} \times 60.0\text{ mm}$.<br>• **Function**: Watertight negative volume modeling the sound and airflow pathways.<br>• **Acoustic Role**: Includes $100\text{ mm}$ upstream and downstream duct ports for impedance and transmission loss simulation. |
+| <img src="render_air_domain_iso.png" width="220"/> | **7. Inverse Acoustic Air Domain** | • **Dimensions**: $60.0\text{ mm} \times 230.0\text{ mm} \times 30.0\text{ mm}$.<br>• **Function**: Watertight negative volume modeling the sound and airflow pathways.<br>• **Acoustic Role**: Includes $100\text{ mm}$ upstream and downstream duct ports for impedance and transmission loss simulation. |
 
 ---
 
@@ -95,14 +95,15 @@ The geometry is 100% equation-driven. All dimensions are derived from global par
 | Global Variable | SolidWorks Equation / Formula | Evaluated Value | Engineering / Geometric Purpose |
 | :--- | :--- | :---: | :--- |
 | `W_cell` | `60mm` | **60.00 mm** | Total width of one unit cell (X-direction) |
-| `H_cell` | `30mm` | **30.00 mm** | Total depth / window panel thickness (Y-direction) |
-| `D_cell` | `60mm` | **60.00 mm** | Extrusion height of one unit cell (Z-direction) |
+| `H_cell` | `30mm` | **30.00 mm** | Total height of one unit cell (Y-direction) |
+| `D_cell` | `30mm` | **30.00 mm** | Extrusion depth of one unit cell (Z-direction) |
 | `W_airway` | `20mm` | **20.00 mm** | Central unobstructed ventilation duct width (33.3% open) |
-| `t_wall` | `1.6mm` | **1.60 mm** | Wall thickness ($4 \times 0.4\text{ mm}$ 3D printer nozzle passes) |
+| `t_wall` | `1.5mm` | **1.50 mm** | Wall and baffle thickness (uniform across all partitions) |
+| `w_slit_entry`| `2.0mm` | **2.00 mm** | Acoustic entry slit doorway into resonator chamber |
 | `N_passes` | `4` | **4** | Number of folded vertical passes per side chamber |
 | `W_chamber`| `("W_cell" - "W_airway") / 2` | **20.00 mm** | Total width of each side resonator chamber |
-| `w_slit` | `("W_chamber" - ("N_passes" + 1) * "t_wall") / "N_passes"` | **3.00 mm** | Exact width of each folded acoustic channel |
-| `L_baffle` | `"H_cell" - (2 * "t_wall") - "w_slit"` | **23.80 mm** | Exact vertical length of each internal baffle wall |
+| `w_slit` | `("W_chamber" - ("N_passes" + 1) * "t_wall") / "N_passes"` | **3.125 mm** | Exact width of each folded acoustic channel |
+| `L_baffle` | `"H_cell" - (2 * "t_wall") - "w_slit_entry"` | **23.00 mm** | Exact vertical length of each internal baffle wall |
 | `L_waveguide`| `100mm` | **100.00 mm** | Upstream & downstream simulation duct port length |
 
 *The parametric equations file is available at [`metamaterial_equations.txt`](metamaterial_equations.txt) and can be imported directly into any SolidWorks part via `Tools > Equations > Import`.*
